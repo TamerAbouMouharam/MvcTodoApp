@@ -1,0 +1,47 @@
+﻿@model List<MvcTodoApp.Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+
+<body>
+
+    <ul>
+        @foreach (var task in Model)
+        {
+            <li>
+                @if (task.IsComplete)
+                {
+                    <s>@task.Title</s>
+                }
+                else
+                {
+                    @task.Title
+
+                    <form method="post" asp-action="CompleteTask" style="display: inline;">
+                        <input type="hidden" name="id" value="@task.Id" />
+                        <button type="submit">Completed</button>
+                    </form>
+                }
+            </li>
+        }
+
+    </ul>
+
+    <form method="post" asp-action="AddTask">
+        <input type="text" name="title" placeholder="Add a new task" />
+        <button type="submit">Add</button>
+    </form>
+
+</body>
+
+</html>
