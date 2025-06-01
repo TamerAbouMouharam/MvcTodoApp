@@ -59,6 +59,13 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult EditTask(int id, string title)
     {
+        TaskItem? task = tasks.FirstOrDefault(t => t.Id == id);
+
+        if (task != null && !string.IsNullOrWhiteSpace(title))
+        {
+            task.Title = title;
+        }
+
         return RedirectToAction("Index");
     }
 

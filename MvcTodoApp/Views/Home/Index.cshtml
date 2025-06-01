@@ -31,6 +31,12 @@
                         <input type="hidden" name="id" value="@task.Id" />
                         <button type="submit">Completed</button>
                     </form>
+
+                    <form method="post" asp-action="EditTask" style="display: inline;">
+                        <input type="hidden" name="id" value="@task.Id" />
+                        <input type="text" name="title" placeholder="Edit task title..." />
+                        <button type="submit">Update</button>
+                    </form>
                 }
             </li>
         }
